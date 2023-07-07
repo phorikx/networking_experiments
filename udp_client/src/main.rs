@@ -6,7 +6,9 @@ fn main() -> std::io::Result<()> {
 
     let message = "Hello world!";
 
-    client_socket.send_to(message.as_bytes(), "127.0.0.1:12000").expect("couldn't send data");
+    client_socket
+        .send_to(message.as_bytes(), "127.0.0.1:12000")
+        .expect("couldn't send data");
 
     let mut buf = [0; 12];
 
