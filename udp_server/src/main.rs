@@ -6,7 +6,7 @@ fn main() -> std::io::Result<()> {
 
     loop {
         let mut buf = [0; 12];
-        let (amt, _src) = server_socket.recv_from(&mut buf)?;
+        let (amt, src) = server_socket.recv_from(&mut buf)?;
         
         
         let buf = &mut buf[..amt];
@@ -17,7 +17,6 @@ fn main() -> std::io::Result<()> {
             Err(e) => panic!("Invalid UTF-8 sequence: {}", e),
         };
 
-        server_socket.send_to(response.as_bytes(), "127.0.0.1:2048").expect("couldn't send data");
+        server_socket.send_to(response.as_bytes(), src).expect("couldn't send data");
     }
-    Ok(())
 }

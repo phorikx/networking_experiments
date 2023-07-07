@@ -10,7 +10,7 @@ fn main() -> std::io::Result<()> {
 
     let mut buf = [0; 12];
 
-    let (amt, src) = client_socket.recv_from(&mut buf)?;
+    let (amt, _src) = client_socket.recv_from(&mut buf)?;
 
     let buf = &mut buf[..amt];
     buf.reverse();
